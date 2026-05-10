@@ -2,33 +2,33 @@ pico-8 cartridge // http://www.pico-8.com
 version 43
 __lua__
 function _init()
- posx = 64
- posy = 80
+ shipx = 64
+ shipy = 80
 -- ball = spr(1)
 -- string = spr(2)
 -- enemy_1 = spr(3)
 	speed = 3
-	x0 = 8
-	y0 = 90
-	x1 = 120
-	y1 = 124
+	box1_1 = 8
+	box1_2 = 90
+	box2_1 = 120
+	box2_2 = 124
 --	col = 3
 end
 
 function _update()
 --	col+=1	
 
-	if posx < 10 then
-		posx = 10
-	elseif posx > 110 then
-		posx = 110
+	if shipx < 10 then
+		shipx = 10
+	elseif shipx > 110 then
+		shipx = 110
 	end
 
  if btn(➡️) then
-  posx+=speed
+  shipx+=speed
 	end
  if btn(⬅️) then
-  posx-=speed
+  shipx-=speed
 	end
 	
 	
@@ -37,10 +37,10 @@ end
 function _draw() 
  cls()
 -- spr(0,y1)
- rectfill(x0,y0,x1,y1,15)
-	spr(1,posx,posy)
---	circ(25,25,50,col)
- spr(2,posx,posy-15)
+ rectfill(box1_1,box1_2,box2_1,box2_2,15)
+	spr(1,shipx,shipy)
+--	circ(25,25,50,)
+ spr(2,shipx,shipy-15)
 
 end
 
