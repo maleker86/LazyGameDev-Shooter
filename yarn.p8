@@ -2,24 +2,59 @@ pico-8 cartridge // http://www.pico-8.com
 version 43
 __lua__
 function _init()
+-- clear screen
+ cls(1)
+
+ -- variables
  shipx = 64
  shipy = 80
--- bulletx = shipx
+
+ shipspdx=0
+ shipspdy=0
+ 
+ speed=3
+ bullspeed=5
+
+ bulletx = shipx
  bullety = shipy-15
 -- ball = spr(1)
 -- string = spr(2)
 -- enemy_1 = spr(3)
-	shipspd = 3
-	box1x = 8
-	box1y = 90
-	box2x = 120
-	box2y = 120
+ box1x = 8
+ box1y = 90
+ box2x = 120
+ box2y = 120
 --	col = 3
 end
 
 function _update()
---	col+=1	
+-- controls
+ if btn(➡️) then
+  shipx+=speed
+	end
+ if btn(⬅️) then
+  shipx-=speed
+	end
+ if btn(⬆️) then
+  shipy-=speed
+	end
+ if btn(⬇️) then
+  shipy+=speed
+	end
+ if btnp(❎) then
+  print("░")
+  bulletx=shipx
+  bullety=shipy-bullspeed
+	end
 
+-- moving the ship
+ shipx=shipx+shipspdx
+ shipy=shipy+shipspdy
+
+-- move the bullet
+ bullety=bullety-4
+
+-- keep it on screen
 	if shipx < 10 then
 		shipx = 10
 	elseif shipx > 110 then
@@ -30,24 +65,6 @@ function _update()
 		shipy = box1x
 	end
 
- if btn(➡️) then
-  shipx+=shipspd
-	end
- if btn(⬅️) then
-  shipx-=shipspd
-	end
- if btn(⬆️) then
-  shipy-=shipspd
-	end
- if btn(⬇️) then
-  shipy+=shipspd
-	end
- if btnp(❎) then
-  print("░")
-  bullety-=5
-	end
-	
-	
 end
 
 function _draw() 
@@ -55,7 +72,7 @@ function _draw()
 -- spr(0,y1)
  rectfill(box1x,box1y,box2x,box2y,15)
 	spr(1,shipx,shipy)
-	spr(2,shipx,bullety)
+	spr(2,bulletx,bullety)
 --	circ(25,25,50,)
 
 end
