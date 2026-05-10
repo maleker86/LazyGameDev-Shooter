@@ -4,14 +4,16 @@ __lua__
 function _init()
  shipx = 64
  shipy = 80
+-- bulletx = shipx
+ bullety = shipy-15
 -- ball = spr(1)
 -- string = spr(2)
 -- enemy_1 = spr(3)
-	speed = 3
-	box1_1 = 8
-	box1_2 = 90
-	box2_1 = 120
-	box2_2 = 124
+	shipspd = 3
+	box1x = 8
+	box1y = 90
+	box2x = 120
+	box2y = 120
 --	col = 3
 end
 
@@ -22,25 +24,39 @@ function _update()
 		shipx = 10
 	elseif shipx > 110 then
 		shipx = 110
+	elseif shipy > box2y-10 then
+		shipy = box2y-10
+	elseif shipy < box1x then
+		shipy = box1x
 	end
 
  if btn(➡️) then
-  shipx+=speed
+  shipx+=shipspd
 	end
  if btn(⬅️) then
-  shipx-=speed
+  shipx-=shipspd
+	end
+ if btn(⬆️) then
+  shipy-=shipspd
+	end
+ if btn(⬇️) then
+  shipy+=shipspd
+	end
+ if btnp(❎) then
+  print("░")
+  bullety-=5
 	end
 	
 	
 end
 
 function _draw() 
- cls()
+ cls(1)
 -- spr(0,y1)
- rectfill(box1_1,box1_2,box2_1,box2_2,15)
+ rectfill(box1x,box1y,box2x,box2y,15)
 	spr(1,shipx,shipy)
+	spr(2,shipx,bullety)
 --	circ(25,25,50,)
- spr(2,shipx,shipy-15)
 
 end
 
