@@ -6,6 +6,8 @@ function _init()
  cls(1)
 
  -- variables
+ shipspr = 1
+
  shipx = 64
  shipy = 80
 
@@ -31,10 +33,12 @@ function _update()
 -- controls
  if btn(➡️) then
   shipx+=speed
-	end
-	
- if btn(⬅️) then
+  shipspr = 18
+	elseif btn(⬅️) then
   shipx-=speed
+  shipspr = 19
+ else
+  shipspr = 1
 	end
 	
  if btn(⬆️) then
@@ -76,7 +80,7 @@ function _draw()
  cls(1)
 -- spr(0,y1)
  rectfill(box1x,box1y,box2x,box2y,15)
-	spr(1,shipx,shipy)
+	spr(shipspr,shipx,shipy)
 	spr(2,bulletx,bullety)
 --	circ(25,25,50,)
 
