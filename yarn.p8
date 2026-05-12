@@ -93,11 +93,11 @@ function _draw()
 	--spr(6,box1x+10,box2y-10)
 --	circ(25,25,50,)
 
- for i=1,lives+1 do
+ for i=1,3 do
   if lives>=i then
    spr(20,i*9,4)
-  --else 
-  -- spr(21,i*9,4)
+  else 
+   spr(21,i*9,4)
   end
   
  end
